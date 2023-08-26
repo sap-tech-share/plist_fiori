@@ -1,0 +1,85 @@
+<mvc:View controllerName="project1.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="page" title="{i18n>titleDetail}">
+        <content>
+            <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+            <l:VerticalLayout width="20%">
+                <Label text="{/#ProcurementList/Plist/@sap:label}" labelFor="input-plno" design="Bold" />
+                <Input id="input-plno" editable="false" value="{Plist}" class="sapUiMediumMarginBottom" />
+
+                <Label text="{/#ProcurementList/CreatedBy/@sap:label}" labelFor="input-crby" />
+                <Input id="input-crby" editable="false" value="{CreatedBy}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/CreatedAt/@sap:label}" labelFor="input-crat" />
+                <!-- <Input id="input-crat" editable="false" value="{CreatedAt}" class="sapUiMediumMarginBottom"/> -->
+                <Input id="input-crat" editable="false" value="{path:'CreatedAt',formatter:'.formatDate'}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/EstChgReq/@sap:label}" labelFor="input-crno" />
+                <Input id="input-crno" editable="false" value="{EstChgReq}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/Division/@sap:label}" labelFor="input-div" />
+                <Input id="input-div" editable="false" value="{Division}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/Zzuser/@sap:label}" labelFor="input-user" />
+                <Input id="input-user" editable="false" value="{Zzuser}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/YearOfConst/@sap:label}" labelFor="input-yom" />
+                <Input id="input-yom" editable="false" value="{YearOfConst}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/ExpDate/@sap:label}" labelFor="input-expdt" />
+                <Input id="input-expdt" editable="false" value="{ExpDate}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/KmReading/@sap:label}" labelFor="input-kmrg" />
+                <Input id="input-kmrg" editable="false" value="{KmReading}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/ActConfig/@sap:label}" labelFor="input-actcg" />
+                <Input id="input-actcg" editable="false" value="{ActConfig}" class="sapUiMediumMarginBottom"/>
+
+                <Label text="{/#ProcurementList/EquipConCode/@sap:label}" labelFor="input-ecode" />
+                <Input id="input-ecode" editable="false" value="{EquipConCode}" class="sapUiMediumMarginBottom"/>
+            </l:VerticalLayout>
+            
+            <l:VerticalLayout width="20%">
+                <Label text="{/#ProcurementList/Diso/@sap:label}" labelFor="input-disco" class="sapUiMediumMarginBegin"/>
+                <Input id="input-disco" editable="false" value="{Diso}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+
+                <Label text="{/#ProcurementList/DisoOptions/@sap:label}" labelFor="input-dopt" class="sapUiMediumMarginBegin"/>
+                <Input id="input-dopt" editable="false" value="{DisoOptions}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+
+                <Label text="{/#ProcurementList/LogCatg/@sap:label}" labelFor="input-lcat" class="sapUiMediumMarginBegin"/>
+                <Input id="input-lcat" editable="false" value="{LogCatg}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+
+                <Label text="{/#ProcurementList/Comments/@sap:label}" labelFor="input-comm" class="sapUiMediumMarginBegin"/>
+                <Input id="input-ecomm" editable="false" value="{Comments}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+            </l:VerticalLayout>
+
+            <l:VerticalLayout width="20%" class="sapUiMediumMarginBegin">
+                <Label text="{/#ProcurementList/ProcFileNo/@sap:label}" labelFor="input-proc" class="sapUiMediumMarginBegin"/>
+                <Input id="input-proc" editable="false" value="{ProcFileNo}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+
+                <Label text="{/#ProcurementList/ContractNo/@sap:label}" labelFor="input-conno" class="sapUiMediumMarginBegin"/>
+                <Input id="input-conno" editable="false" value="{ContractNo}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+
+                <Label text="{/#ProcurementList/ProcurementDate/@sap:label}" labelFor="input-prcdt" class="sapUiMediumMarginBegin"/>
+                <Input id="input-prcdt" editable="false" value="{ProcurementDate}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+
+                <Label text="{/#ProcurementList/DeliveryDate/@sap:label}" labelFor="input-dlvdt" class="sapUiMediumMarginBegin"/>
+                <Input id="input-dlvdt" editable="false" value="{DeliveryDate}" class="sapUiMediumMarginBottom sapUiMediumMarginBegin"/>
+            </l:VerticalLayout>
+            </Panel>
+        </content>
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Back" press="onBack" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>

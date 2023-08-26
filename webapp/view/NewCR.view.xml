@@ -1,0 +1,58 @@
+<mvc:View controllerName="project1.controller.NewCR"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="page" title="{i18n>titleCR}">
+        <content >
+
+                <Panel  width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                    <l:VerticalLayout width="20%">
+                        <Label text="Change Request no" labelFor="input-creq" />
+                        <Input id="input-creq" placeholder="Change Request no" />
+                    </l:VerticalLayout>
+                </Panel>
+
+                <Panel id="test" width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                    <l:VerticalLayout width="20%">
+                        <Label text="Equipment Type" labelFor="input-equip" />
+                        <Input id="input-equip" placeholder="Equipment Type" required="true" class="sapUiMediumMarginBottom" change="checkRequiredField"/>
+
+                        
+
+                        <Label text="Disco" labelFor="input-disco" />
+                        <Input id="input-disco" maxLength="3" class="sapUiMediumMarginBottom"/>
+
+                        <Label text="Disco Options" labelFor="input-dopt" />
+                        <Input id="input-dopt" />
+                    </l:VerticalLayout>
+
+                    <l:VerticalLayout width="20%">
+                        <Label text="Log Category" labelFor="input-lcat" class="sapUiMediumMarginBegin"/>
+                        <Input id="input-lcat" maxLength="3" placeholder="Log Category" class="sapUiMediumMarginBegin"/>
+                    </l:VerticalLayout>
+                </Panel>
+
+
+            <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                    <l:VerticalLayout width="20%">
+                        <Label text="Comments" labelFor="input-comm" />
+                        <Input id="input-comm" />
+                    </l:VerticalLayout>
+            </Panel>
+
+
+        </content>
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="btn-create" text="Create" press="onCreate" type="Emphasized" enabled="false"/>
+                <Button id="btn-cancel" text="Cancel" press="onCancel" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>

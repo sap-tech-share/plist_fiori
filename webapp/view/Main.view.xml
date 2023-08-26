@@ -1,0 +1,83 @@
+<mvc:View controllerName="project1.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+	xmlns:table="sap.ui.table"
+	xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+    <Page id="page" title="{i18n>titleMain}">
+	<content >
+            
+			<VBox fitContainer="true">
+			<smartFilterBar:SmartFilterBar id="smartFilterBar"
+				entitySet="ProcurementList" persistencyKey="SmartFilter_Explored" filterContainerWidth="9rem" useToolbar="true">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="Plist" id="filter_plist" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="1" key="CreatedAt" id="filter_cron" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="2" key="CreatedBy" id="filter_crby" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="3" key="PlateNo" id="filter_plateno" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="4" key="EstChgReq" id="filter_chrq" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="5" key="Division" id="filter_division" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="6" key="Owner" id="filter_owner" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="7" key="Zzuser" id="filter_user" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="8" key="ExpDate" id="filter_expdt" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="9" key="ActConfig" id="filter_cnfg" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="10" key="EquipConCode" id="filter_eqcnfg" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="11" key="AllocCode"  id="filter_alcode" visibleInAdvancedArea="true" />
+					<smartFilterBar:ControlConfiguration index="12" key="Status" id="filter_stat" visibleInAdvancedArea="true" />
+				</smartFilterBar:controlConfiguration>
+				<smartFilterBar:layoutData>
+						<FlexItemData shrinkFactor="0"/>
+					</smartFilterBar:layoutData>
+			</smartFilterBar:SmartFilterBar>
+			
+		
+		
+		
+    <smartTable:SmartTable id="LineItemSmartTable" entitySet="ProcurementList"
+		smartFilterId="smartFilterBar" tableType="Table"
+		 beforeExport="onBeforeExport" useVariantManagement="false"
+		useTablePersonalisation="true" showTablePersonalisation="true" header="{i18n>titleList}" showRowCount="true"
+		persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true"
+		class="sapUiResponsiveContentPadding" enableAutoColumnWidth="true" uiStateChange="onUiStateChange"
+        
+		initiallyVisibleFields="Plist,CreatedAt,CreatedBy,Name,PlateNo,EstChgReq,Qty,Unit,Division,Owner,Zzuser,YearOfConst,ExpDate,KmReading,ActConfig,EquipConCode,AllocCode,EquipType,Description,Diso,DisoOptions,
+		LogCatg,Comments" >
+		<smartTable:customToolbar>
+			<OverflowToolbar id="overflow_toolbar" design="Transparent">
+				<ToolbarSpacer id="toolbar_spacer"/>
+				<Button id="btn_disp" tooltip="Display/Detail" text="Display/Detail" press="OnPlistDetail" type="Emphasized"/>
+				<Button id="btn_upd" tooltip="Update Item" text="Update" press="OnPlistUpdate" type="Emphasized"/>
+				<Button id="btn_del" tooltip="Delete Item" text="Delete" press="OnPlistDelete" type="Emphasized"/>
+				<Button id="btn_license" tooltip="Create From License" text="New From License" press="OnPlistNewLicense" type="Emphasized"/>
+				<Button id="btn_creq" tooltip="Create From Change Request#" text="New From Change Req#" press="OnPlistNewCR" type="Emphasized"/>
+				
+			</OverflowToolbar>
+		</smartTable:customToolbar>
+		<table:Table id="maintable" selectionMode="Single" selectionBehavior="Row" visibleRowCountMode="Auto" width="auto">
+			<table:columns >
+          		<table:Column width="10rem">
+					<Label text="{/#ProcurementList/CreatedAt/@sap:label}"/>
+                	<table:customData>
+	          			<core:CustomData key="p13nData" value='\{"columnKey": "CreatedAt", "leadingProperty": "CreatedAt", "columnIndex": 1}'/>
+					</table:customData>
+					
+					<table:template>
+					<Text text="{path:'CreatedAt',formatter:'.formatDate'}"></Text>
+					</table:template>
+
+            	</table:Column>
+      		</table:columns>
+			<table:layoutData><FlexItemData growFactor="1" baseSize="0%"/></table:layoutData>
+		</table:Table>
+		<smartTable:layoutData>
+					<FlexItemData growFactor="1" baseSize="0%"/>
+				</smartTable:layoutData>
+	</smartTable:SmartTable>
+        
+		</VBox>
+		</content>
+    </Page>
+</mvc:View>

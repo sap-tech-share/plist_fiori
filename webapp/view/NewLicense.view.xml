@@ -1,0 +1,63 @@
+<mvc:View controllerName="project1.controller.NewLicense"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:form="sap.ui.comp.smartform"
+    xmlns:sf="sap.ui.comp.smartfield"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="page" title="{i18n>titleNewLicense}">
+
+        
+        <content>
+            
+			<Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Select Plate# to be replaced"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <l:VerticalLayout width="20%">
+                        <Label text="Plate#" labelFor="input-plno" />
+                        <Input name="input-plno" id="input-plno" placeholder="Plate# to be replaced" required="true" 
+                        showSuggestion="true" suggestionItems="{/Resources}" showTableSuggestionValueHelp="true" change="checkRequiredField">
+                            <suggestionItems>
+                                <core:Item text="{PlateNo}" />
+                            </suggestionItems>
+                        </Input>
+                    </l:VerticalLayout>
+                </content>
+            </Panel>
+
+
+            <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="Additional Info (Optional)"/>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <content>
+                    <l:VerticalLayout width="20%">
+                        <Label text="Disco Options" labelFor="input-dopt" />
+                        <Input id="input-dopt" class="sapUiMediumMarginBottom"/>
+
+                        <Label text="Comments" labelFor="input-comm" />
+                        <Input id="input-comm" />
+                    </l:VerticalLayout>
+                </content>
+            </Panel>
+
+        </content>
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="btn-create" text="Create" press="onCreate" type="Emphasized" enabled="false"/>
+                <Button id="btn-cancel" text="Cancel" press="onCancel" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>

@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.6"
+metadata:
+  name: project1
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        # ignoreCertError: true
+        log: 5
+        target:
+          url: http://192.168.1.184:8021
+          client: "800"
+        app:
+          name: ZPLIST_REPO
+          package: $TMP
+          # transport: A4HK902301
+        exclude:
+          - /test/
