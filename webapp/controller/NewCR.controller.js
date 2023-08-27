@@ -45,17 +45,17 @@ sap.ui.define([
                 let discoOptions = this.getView().byId("input-dopt").getValue();
                 let logCat = this.getView().byId("input-lcat").getValue();
                 let comment = this.getView().byId("input-comm").getValue();
-                debugger;
+                
                 let crData = {"EstChgReq": crReq, "EquipType": equip, "Diso": disco, "DisoOptions": discoOptions, "LogCatg": logCat, "Comments": comment};
                 oModel.create("/ProcurementList", crData, {
                     success: function (oResponse) {
-                        debugger;
+                        
                         that.getView().setBusy(false);
                         MessageToast.show("Procurement List " + oResponse.Plist + " is generated for CR# " + oResponse.EstChgReq);
 
                         var oHistory = History.getInstance();
                         var sPreviousHash = oHistory.getPreviousHash();
-                            debugger;
+                            
                         that.getView().byId("input-creq").setValue("");
                         that.getView().byId("input-equip").setValue("");
                         that.getView().byId("input-disco").setValue("");
@@ -71,7 +71,7 @@ sap.ui.define([
 
                     },
                     error: function (oError) {
-                        debugger;
+                        
                         that.getView().setBusy(false);
                         let vError = JSON.parse(oError.responseText);
                         MessageBox.show(
@@ -100,8 +100,7 @@ sap.ui.define([
             },
     
             onExit: function () {
-                // this._oSmartTable = null;
-                // this._oMockServer.stop();
+                
             }
         });
     });

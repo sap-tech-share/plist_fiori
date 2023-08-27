@@ -12,10 +12,7 @@ sap.ui.define([
 
         return Controller.extend("project1.controller.Main", {
             onInit: function () {
-                // var oModel = this.getOwnerComponent().getModel();
-                // var oView = this.getView();
-                // oView.setModel(oModel);
-
+                
             },
             _getSmartTable: function () {
                 if (!this._oSmartTable) {
@@ -25,14 +22,35 @@ sap.ui.define([
             },
     
             OnPlistDetail: function (oEvent) {
+
                 let selIndex = this.getView().byId("maintable").getSelectedIndices()[0];
+
+                if (selIndex != undefined) {
                 let selContext = this.getView().byId("maintable").getContextByIndex(selIndex);
                 let pList = this.getView().getModel().getProperty(selContext.sPath).Plist;
-                // let pList = this.getView().byId("maintable").getSelectedItems()[0].getBindingContext().getObject().Plist;
+                
                 let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("RouteDetailView", {Plist: pList});
+                oRouter.navTo("RouteDetailView", {Plist: pList, Action: "Display"});
+                } else {
+                    MessageBox.show("Select an item to proceed", {icon: MessageBox.Icon.WARNING, title: "Warning"});
+                }
                 
             },
+
+            OnPlistUpdate: function (oEvent) {
+                
+                let selIndex = this.getView().byId("maintable").getSelectedIndices()[0];
+                if (selIndex != undefined) {
+                let selContext = this.getView().byId("maintable").getContextByIndex(selIndex);
+                let pList = this.getView().getModel().getProperty(selContext.sPath).Plist;
+                
+                let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteDetailView", {Plist: pList, Action: "Update"});
+                } else {
+                    MessageBox.show("Select an item to proceed", {icon: MessageBox.Icon.WARNING, title: "Warning"});
+                }
+                
+            },            
     
             OnPlistNewLicense: function (oEvent) {
                 
@@ -50,9 +68,24 @@ sap.ui.define([
                 
             },
 
-            OnPlistDelete: function (oEvent) {
-                // let pList = this.getView().byId("maintable").getSelectedItems()[0].getBindingContext().getObject().Plist;
+            OnUpdStat: function (oEvent) {
+                
                 let selIndex = this.getView().byId("maintable").getSelectedIndices()[0];
+                if (selIndex != undefined) {
+                let selContext = this.getView().byId("maintable").getContextByIndex(selIndex);
+                let pList = this.getView().getModel().getProperty(selContext.sPath).Plist;
+                
+                let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("RouteUpdStatusView", {Plist: pList});
+                } else {
+                    MessageBox.show("Select an item to proceed", {icon: MessageBox.Icon.WARNING, title: "Warning"});
+                }
+            },
+
+            OnPlistDelete: function (oEvent) {
+                
+                let selIndex = this.getView().byId("maintable").getSelectedIndices()[0];
+                if (selIndex != undefined) {
                 let selContext = this.getView().byId("maintable").getContextByIndex(selIndex);
                 let pList = this.getView().getModel().getProperty(selContext.sPath).Plist;
                 let dMessage = "Please confirm deletion of PL# " + pList; 
@@ -84,6 +117,9 @@ sap.ui.define([
                         }
                     }
                 );
+                } else {
+                    MessageBox.show("Select an item to proceed", {icon: MessageBox.Icon.WARNING, title: "Warning"});
+                }
             },
 
             formatDate: function (oVal) {

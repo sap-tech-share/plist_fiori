@@ -116,7 +116,7 @@
         },
         {
           "name": "RouteDetailView",
-          "pattern": "Detail/{Plist}",
+          "pattern": "Detail/{Plist}/{Action}",
           "target": [
             "TargetDetailView"
           ]
@@ -133,6 +133,13 @@
           "pattern": "NewCR",
           "target": [
             "TargetNewCRView"
+          ]
+        },
+        {
+          "name": "RouteUpdStatusView",
+          "pattern": "StatusUpdate/{Plist}",
+          "target": [
+            "TargetUpdStatusView"
           ]
         }
       ],
@@ -164,6 +171,13 @@
           "clearControlAggregation": false,
           "viewId": "NewCR",
           "viewName": "NewCR"
+        },
+        "TargetUpdStatusView": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "UpdStatus",
+          "viewName": "UpdStatus"
         }
       }
     },

@@ -17,7 +17,7 @@
                     </l:VerticalLayout>
                 </Panel>
 
-                <Panel id="test" width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
                     <l:VerticalLayout width="20%">
                         <Label text="Equipment Type" labelFor="input-equip" />
                         <Input id="input-equip" placeholder="Equipment Type" required="true" class="sapUiMediumMarginBottom" change="checkRequiredField"/>

@@ -3,7 +3,7 @@ sap.ui.define(
         "sap/ui/core/mvc/Controller",
         "sap/ui/core/routing/History",
         "sap/m/MessageBox",
-        "sap/m/MessageToast",
+        "sap/m/MessageToast"
     ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -67,21 +67,7 @@ sap.ui.define(
                             var oRouter = that.getOwnerComponent().getRouter();
                             oRouter.navTo("RouteMainView", {}, true);
                         }
-                        // let actData = {"Plist": "11","IsActiveEntity":false};
-                        // oModel.callFunction("/ProcurementListActivate",
-                        // {
-                        //     method: "POST",
-                        //     urlParameters: {Plist: oResponse.Plist, IsActiveEntity: false},
-                        //     success: function (oResponse) {
-                        
-                        //         that.getView().setBusy(false);
-                        //     },
-                        //     error: function (oError) {
-                        
-                        //         that.getView().setBusy(false);
-                        //     }
 
-                        // });
                     },
                     error: function (oError) {
                         
@@ -90,8 +76,7 @@ sap.ui.define(
                         MessageBox.show(vError.error.message.value, {
                             icon: MessageBox.Icon.ERROR,
                             title: "Error while saving data",
-                            // actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                            // onClose: function(oAction) { / * do something * / }
+                            
                         });
                     },
                 });
@@ -125,13 +110,15 @@ sap.ui.define(
                     }
                 }
 
-                // oInput.setValueState(oInput.getValue() === "" ? "Error" : "None");
+            },
+
+            formatStringToNum: function (oVal) {
+
+                return Number(oVal);
             },
 
             onExit: function () {
                 
-                // this._oSmartTable = null;
-                // this._oMockServer.stop();
             },
         });
     }

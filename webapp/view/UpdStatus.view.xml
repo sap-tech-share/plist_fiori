@@ -1,0 +1,29 @@
+<mvc:View controllerName="project1.controller.UpdStatus"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <Page id="page" title="{i18n>titleUpdStatus}">
+        <content >
+            <Panel  width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
+                <l:VerticalLayout width="20%">
+                    <Label text="PL#" labelFor="input-plno" />
+                    <Input id="input-plno" value="{Plist}" enabled="false"/>
+                    <Label text="Status" labelFor="input-status" class="sapUiMediumMarginTop"/>
+                    <Input id="input-status" value="{Status}" liveChange="checkRequiredField" />
+                </l:VerticalLayout>
+            </Panel>    
+        </content>
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="btn-update" text="Update" press="onUpdate" type="Emphasized" enabled="false"/>
+                <Button id="btn-cancel" text="Cancel" press="onCancel" type="Emphasized"/>
+			</Toolbar>
+		</footer>
+    </Page>
+</mvc:View>

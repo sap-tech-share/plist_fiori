@@ -53,6 +53,7 @@
 				<Button id="btn_del" tooltip="Delete Item" text="Delete" press="OnPlistDelete" type="Emphasized"/>
 				<Button id="btn_license" tooltip="Create From License" text="New From License" press="OnPlistNewLicense" type="Emphasized"/>
 				<Button id="btn_creq" tooltip="Create From Change Request#" text="New From Change Req#" press="OnPlistNewCR" type="Emphasized"/>
+				<Button id="btn_stat" tooltip="Update Status" text="Update Status" press="OnUpdStat" type="Emphasized"/>
 				
 			</OverflowToolbar>
 		</smartTable:customToolbar>
