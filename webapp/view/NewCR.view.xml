@@ -41,7 +41,10 @@
             <Panel width="auto" class="sapUiResponsiveMargin" accessibleRole="Region">
                     <l:VerticalLayout width="20%">
                         <Label text="Comments" labelFor="input-comm" />
-                        <Input id="input-comm" />
+                        <!-- <Input id="input-comm" /> -->
+                        <TextArea id="input-comm" fieldGroupIds="edit" name="Comments" width="100%"
+                            maxLength="{path:'/#ProcurementList/Comments/@maxLength',formatter:'.formatStringToNum'}" 
+                            rows="{= Math.ceil(${path:'/#ProcurementList/Comments/@maxLength',formatter:'.formatStringToNum'} / 20 ) + 1}"/>
                     </l:VerticalLayout>
             </Panel>
 

@@ -98,6 +98,11 @@ sap.ui.define([
                 }
 
             },
+
+            formatStringToNum: function (oVal) {
+
+                return Number(oVal);
+            },
     
             onExit: function () {
                 
