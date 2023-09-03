@@ -24,6 +24,15 @@
           "localUri": "localService/metadata.xml",
           "odataVersion": "2.0"
         }
+      },
+      "attachService": {
+        "uri": "/sap/opu/odata/sap/API_CV_ATTACHMENT_SRV",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localAttachService/metadata.xml",
+          "odataVersion": "2.0"
+        }
       }
     },
     "crossNavigation": {
@@ -86,6 +95,11 @@
       "": {
         "dataSource": "mainService",
         "preload": true,
+        "settings": {}
+      },
+      "attachment": {
+        "dataSource": "attachService",
+        "preload": false,
         "settings": {}
       }
     },

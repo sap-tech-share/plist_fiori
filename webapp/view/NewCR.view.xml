@@ -3,6 +3,7 @@
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable"
 	xmlns:html="http://www.w3.org/1999/xhtml"
@@ -34,6 +35,39 @@
                     <l:VerticalLayout width="20%">
                         <Label text="Log Category" labelFor="input-lcat" class="sapUiMediumMarginBegin"/>
                         <Input id="input-lcat" maxLength="3" placeholder="Log Category" class="sapUiMediumMarginBegin"/>
+
+                        <Label text="Reference File" labelFor="input-fileUploader" class="sapUiMediumMarginBegin sapUiMediumMarginTop"/>    
+                        <l:HorizontalLayout >
+                        <u:FileUploader
+                            id="fileUploader"
+                            name="myFileUpload"
+                            uploadUrl="upload/"
+                            uploadComplete="handleUploadComplete"
+                            change="handleValueChange"
+                            typeMissmatch="handleTypeMissmatch"
+                            style="Emphasized"
+                            icon="sap-icon://browse-folder"
+                            iconOnly="true"
+                            width="100%"
+                            fileType="txt,jpg"
+                            placeholder="Choose a file for Upload..."
+                            class="sapUiMediumMarginBegin">
+                            </u:FileUploader>
+                        <Button type="Emphasized" class="sapUiLargeMarginBegin"
+                            icon="sap-icon://attachment"
+                            press="handleUploadPress"/>
+                        </l:HorizontalLayout>
+                    </l:VerticalLayout>
+                    <l:VerticalLayout width="20%" class="sapUiLargeMarginBegin">
+                    <Label text="Attachment List"  class="sapUiLargeMarginBegin"/>    
+                        <List id="attach-list" class="sapUiLargeMarginBegin"
+                        headerLevel="H2" 
+                        items="{path: 'attachJSONModel>/results/'}" 
+                        mode="Delete" delete="onDeleteAttachment" noDataText="No Attachments Available">
+                        <CustomListItem >
+                            <Link text="{attachJSONModel>name}"  />
+                        </CustomListItem>
+                        </List>
                     </l:VerticalLayout>
                 </Panel>
 

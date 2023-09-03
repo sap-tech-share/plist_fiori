@@ -96,25 +96,79 @@ sap.ui.define([
                         icon: MessageBox.Icon.WARNING,
                         title: "Deletion Alert",
                         actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                        onClose: function(oAction) { 
+                        onClose: async function(oAction) { 
                             
                             if ( oAction == "YES" ) {
-                                let sPath = "/ProcurementList(Plist='" + pList + "')";
-                                oModel.remove(sPath, {
-                                    success: function (oResponse) {
+
+                                let attachModel = this.getOwnerComponent().getModel("attachment");
+                                let attachPath = "/GetAllOriginals";
+                                let objectType = "ZOBJTEST1";
+                                let objectKey = pList;
+                                
+
+                                let promise = new Promise((resolve, reject ) => { attachModel.read(attachPath, {
+                                    urlParameters: {BusinessObjectTypeName: "'" + objectType + "'", 
+                                                    LinkedSAPObjectKey: "'" + objectKey + "'"},
+                                    success: function (oData, oResponse) { 
+                                        resolve(oData);
                                         
-                                        MessageToast.show("PL# " + pList + " is deleted");
-                                    },
-                                    error: function (oError) {
-                                        let eMessage =  "Error deleting PL# " + pList;
-                                        MessageBox.show(eMessage, {icon: MessageBox.Icon.ERROR, title: "Error"});
-                                        
-                                    }
+                                    
+                                    }.bind(this), 
+                                    error: function (oError) {reject(oError);}
                                 })
+                                });
+
+                                let attachList = await promise.then((oRes)=> {debugger; return oRes;}).catch((oErr)=> {debugger;})
+
+                                let promises = [];
+                                promises = attachList.results.map(data => {
+                                    let deleteUrl = data.__metadata.uri.substring(data.__metadata.uri.indexOf('/AttachmentContentSet'));
+            
+                                    return new Promise ((resolve, reject) => {
+                                        attachModel.remove(deleteUrl, 
+                                            { 
+                                                success: function(oSucc){
+                                                    resolve(oSucc);
+                                                },
+                                                error: function(oErr){
+                                                    reject(oErr);
+                                                }
+                                            }   
+                                            );
+                                    });
+                                });
+
+                                let promisePlist = new Promise ((resolve, reject) => {
+                                    let sPath = "/ProcurementList(Plist='" + pList + "')";
+                                    oModel.sDefaultUpdateMethod = sap.ui.model.odata.UpdateMethod.Merge;
+                                    oModel.remove(sPath, {
+                                        success: function (oResponse) {
+                                            resolve(oResponse);
+                                        },
+                                        error: function (oError) {
+                                            reject(oError);
+                                        }
+                                        });
+                                });
+                                promises.push(promisePlist);
+
+                                let retStat = await Promise.all(promises).then(()=> {
+                                    return 'S';
+                                }).catch(()=> {
+                                    return 'E';
+                                });
+
+                                if ( retStat == 'S' ) {
+                                    MessageToast.show("PL# " + pList + " is deleted");
+                                } else {
+                                    let eMessage =  "Error deleting PL# " + pList;
+                                    MessageBox.show(eMessage, {icon: MessageBox.Icon.ERROR, title: "Error"});
+                                }
+
                             } else {
                                 MessageToast.show("Delete action cancelled");
                             }
-                        }
+                        }.bind(this)
                     }
                 );
                 } else {
